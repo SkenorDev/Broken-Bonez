@@ -20,7 +20,7 @@ class Menu extends Phaser.Scene {
     // Add start text
     const startText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height - 100,
         "Press SPACE to Start", 
-        { font: "32px Arial", fill: "#ffffff" }
+        { font: "20px Arial", fill: "#ffffff" }
     ).setOrigin(0.5);
 
     // Start game on SPACE key press
