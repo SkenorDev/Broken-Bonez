@@ -34,7 +34,7 @@ class Play extends Phaser.Scene {
       this.physics.add.collider(this.bike, deathLayer)
       // Camera settings
       this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
-      this.cameras.main.startFollow(this.bike, true, 0.25, 0.25);
+      this.cameras.main.startFollow(this.bike, true, 1,1);
 
       // Debugging (Uncomment to see collision boxes)
        this.physics.world.createDebugGraphic()
