@@ -7,6 +7,7 @@ class Play extends Phaser.Scene {
       this.idle=5
       this.maxspeed=200
       this.addedvel=50
+      
      
   }
     create() {
@@ -41,6 +42,7 @@ class Play extends Phaser.Scene {
        this.cursors = this.input.keyboard.createCursorKeys()
        this.bike.setMaxVelocity(this.maxspeed)
        this.bike.setDragX(5)
+       
     }
     update() {
       if(this.cursors.right.isDown) {
@@ -63,9 +65,7 @@ if(this.cursors.up.isDown && !this.bike.body.blocked.down) {
 if (this.cursors.down.isDown && !this.bike.body.blocked.down) {
   this.bike.setAngularDrag(200);
 }
-if(this.cursors.space.isDown && this.bike.body.blocked.down) {
-  this.bike.setVelocityY(-100);
-}
+
 if (this.bike.body.blocked.down) {
   if(this.bike.angle>45){
     this.scene.start('menuScene')
@@ -77,8 +77,16 @@ if (this.bike.body.blocked.down) {
   this.bike.setAngle(0);
   this.bike.setAngularDrag(0);
 }
+if(this.cursors.space.isDown && this.bike.body.blocked.down) {
+  //this.bike.y=this.bike.y-3
+  this.bike.setVelocityY(-100)
+  this.bike.angle=-20
+}
 if(this.bike.y>256){
   this.scene.start('menuScene')
+}
+if(this.bike.body.velocity.x<this.idle){
+  this.bike.setVelocityX(this.idle)
 }
       }
     
