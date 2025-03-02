@@ -61,7 +61,7 @@ if(this.cursors.up.isDown && !this.bike.body.blocked.down) {
 
 
 if (this.cursors.down.isDown && !this.bike.body.blocked.down) {
-  this.bike.setAngularVelocity(360);
+  this.bike.setAngularDrag(200);
 }
 if(this.cursors.space.isDown && this.bike.body.blocked.down) {
   this.bike.setVelocityY(-100);
@@ -75,6 +75,7 @@ if (this.bike.body.blocked.down) {
   }
   this.bike.setAngularVelocity(0);
   this.bike.setAngle(0);
+  this.bike.setAngularDrag(0);
 }
 if(this.bike.y>256){
   this.scene.start('menuScene')
