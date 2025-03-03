@@ -14,13 +14,22 @@ class Menu extends Phaser.Scene {
       this.load.tilemapTiledJSON('tilemapJSON5', 'BB_5.json');
       this.load.tilemapTiledJSON('tilemapJSON6', 'BB_6.json');
       this.load.tilemapTiledJSON('tilemapJSON7', 'BB_7.json');
-   
-   
+      this.load.audio('explosion', 'boom.wav')
+      this.load.audio('jump', 'jump.wav')
+      this.load.audio('sfx-motor', 'motorsound.mp3')
+      this.load.audio('music', 'music.mp3')
       this.load.image('bike', 'motorbike.png');
       this.load.image('title', 'title.jpg');
   }
 
   create() {
+    let music = this.sound.get('music'); // Check if music already exists
+
+    if (!music) {
+        // Only create and play if it's not already playing
+        music = this.sound.add('music', { loop: true, volume: 0.25 });
+        music.play();
+    }
     // Display title image centered
     this.add.image(this.cameras.main.width / 2, this.cameras.main.height / 2, 'title')
         .setOrigin(0.5)

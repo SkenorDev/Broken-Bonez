@@ -14,7 +14,7 @@ class Play extends Phaser.Scene {
     this.uponce=0
   }
     create() {
-     
+      let jump = this.sound.get('jump');
       const map = this.add.tilemap('tilemapJSON');
       const tileset = map.addTilesetImage('tileset', 'tilesetImage')
 
@@ -57,7 +57,7 @@ class Play extends Phaser.Scene {
       this.scoreText.setDepth(10000000000000000001)
     }
     update() {
-      this.score = Math.floor(this.bike.x*this.mult)
+      this.score = Math.floor((this.bike.x-20)*this.mult)
       this.scoreText.setText(`Score: ${this.score}`)
       
       if(this.cursors.right.isDown) {
@@ -86,10 +86,12 @@ if (this.cursors.down.isDown && !this.bike.body.blocked.down) {
 if (this.bike.body.blocked.down) {
   if(this.bike.angle>46){
     console.log("angle")
+    this.sound.play('explosion')
     this.scene.start('menuScene')
   }
   if(this.bike.angle<-46){
     console.log("angle")
+    this.sound.play('explosion')
     this.scene.start('menuScene')
   }
   this.bike.setAngularVelocity(0);
@@ -97,13 +99,9 @@ if (this.bike.body.blocked.down) {
   this.bike.setAngularDrag(0);
   this.uponce=0
 }
-if(this.cursors.space.isDown && this.bike.body.blocked.down) {
-  this.generatemap()
-  //this.bike.y=this.bike.y-3
-  this.bike.setVelocityY(-100)
-  this.bike.angle=-20
-}
+
 if(this.bike.y>256){
+  this.sound.play('explosion')
   this.scene.start('menuScene')
   console.log("fall")
 }
@@ -118,12 +116,29 @@ if(this.bike.body.blocked.right){
   
   this.death++
   if(this.death>3){
-   
-    //this.scene.start('menuScene')
+    this.sound.play('explosion')
+    this.scene.start('menuScene')
   }
 }
 else{
 this.death=0
+}
+if (Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.bike.body.blocked.down) {
+  this.generatemap()
+  
+  this.bike.y=this.bike.y-3
+  this.bike.setVelocityY(-100)
+  
+  
+  if (this.uponce==0) {
+    this.uponce = 1
+    this.sound.play('jump')
+    console.log("sick")
+   
+  }
+}
+if(this.cursors.space.isDown && this.bike.body.blocked.down) {
+this.bike.setAngle(-20)
 }
       }
     
