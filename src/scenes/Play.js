@@ -9,10 +9,12 @@ class Play extends Phaser.Scene {
       this.addedvel=50
       this.count=1
      this.score=0
-     this.prevscore=0
+    this.death=0
+    this.mult=1
+    this.uponce=0
   }
     create() {
-      
+     
       const map = this.add.tilemap('tilemapJSON');
       const tileset = map.addTilesetImage('tileset', 'tilesetImage')
 
@@ -47,11 +49,17 @@ class Play extends Phaser.Scene {
        this.generatemap()
        this.generatemap()
        this.generatemap()
+       this.scoreText = this.add.text(30, 20, 'Score: 0', {
+        fontSize: '16px',
+        fill: '#ffffff',
+        fontFamily: 'Arial',
+      }).setScrollFactor(0);
+      this.scoreText.setDepth(10000000000000000001)
     }
     update() {
-      this.score+=this.bike.body.velocity+this.bike.body.angularAcceleration
+      this.score = Math.floor(this.bike.x*this.mult)
+      this.scoreText.setText(`Score: ${this.score}`)
       
-      this.prevscore=this.score
       if(this.cursors.right.isDown) {
         this.bike.setAccelerationX(this.addedvel)
     }
@@ -64,8 +72,10 @@ class Play extends Phaser.Scene {
 if(!this.cursors.left.isDown) {
   this.bike.setDragX(40)
 }
-if(this.cursors.up.isDown && !this.bike.body.blocked.down) {
+if(this.cursors.up.isDown && !this.bike.body.blocked.down&&this.uponce<1) {
   this.bike.setAngularVelocity(360);
+  this.mult=this.mult+1
+  this.uponce++
 }
 
 
@@ -74,15 +84,18 @@ if (this.cursors.down.isDown && !this.bike.body.blocked.down) {
 }
 
 if (this.bike.body.blocked.down) {
-  if(this.bike.angle>45){
+  if(this.bike.angle>46){
+    console.log("angle")
     this.scene.start('menuScene')
   }
-  if(this.bike.angle<-45){
+  if(this.bike.angle<-46){
+    console.log("angle")
     this.scene.start('menuScene')
   }
   this.bike.setAngularVelocity(0);
   this.bike.setAngle(0);
   this.bike.setAngularDrag(0);
+  this.uponce=0
 }
 if(this.cursors.space.isDown && this.bike.body.blocked.down) {
   this.generatemap()
@@ -92,16 +105,25 @@ if(this.cursors.space.isDown && this.bike.body.blocked.down) {
 }
 if(this.bike.y>256){
   this.scene.start('menuScene')
+  console.log("fall")
 }
 
- if(this.bike.body.velocity.x<this.idle){
-   this.bike.setVelocityX(this.idle)
+ if(this.bike.body.velocity.x<this.count){
+   this.bike.setVelocityX(this.count)
  }
- if(this.bike.body.velocity.x==0){
-  this.scene.start('menuScene')
-}
+
 if(this.bike.body.blocked.right){
-  this.scene.start('menuScene')
+  console.log(this.score)
+  console.log("wall")
+  
+  this.death++
+  if(this.death>3){
+   
+    //this.scene.start('menuScene')
+  }
+}
+else{
+this.death=0
 }
       }
     

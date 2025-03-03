@@ -14,7 +14,8 @@ class Menu extends Phaser.Scene {
       this.load.tilemapTiledJSON('tilemapJSON5', 'BB_5.json');
       this.load.tilemapTiledJSON('tilemapJSON6', 'BB_6.json');
       this.load.tilemapTiledJSON('tilemapJSON7', 'BB_7.json');
-      
+   
+   
       this.load.image('bike', 'motorbike.png');
       this.load.image('title', 'title.jpg');
   }
