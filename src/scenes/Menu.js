@@ -6,7 +6,15 @@ class Menu extends Phaser.Scene {
   preload() {
       this.load.path = './assets/';
       this.load.image('tilesetImage', 'tileset.png');
-      this.load.tilemapTiledJSON('tilemapJSON', 'BB_Test.json');
+      this.load.tilemapTiledJSON('tilemapJSON', 'BB_Start.json');
+      this.load.tilemapTiledJSON('tilemapJSON1', 'BB_1.json');
+      this.load.tilemapTiledJSON('tilemapJSON2', 'BB_2.json');
+      this.load.tilemapTiledJSON('tilemapJSON3', 'BB_3.json');
+      this.load.tilemapTiledJSON('tilemapJSON4', 'BB_4.json');
+      this.load.tilemapTiledJSON('tilemapJSON5', 'BB_5.json');
+      this.load.tilemapTiledJSON('tilemapJSON6', 'BB_6.json');
+      this.load.tilemapTiledJSON('tilemapJSON7', 'BB_7.json');
+      
       this.load.image('bike', 'motorbike.png');
       this.load.image('title', 'title.jpg');
   }
