@@ -23,7 +23,15 @@ class Play extends Phaser.Scene {
       map.createLayer('decorations', tileset, 0, 0)
       const groundLayer = map.createLayer('ground', tileset, 0, 0)
     
-
+      this.movingEmitter = this.add.particles(0, 0, 'pixel', {
+        speed: 50,
+        gravityX: -200,
+        gravityY: 200,
+        scale: { start: 0.1, end: .5 },
+        alpha: { start: 1, end: 0 },
+        // higher steps value = more time to go btwn min/max
+        
+    })
       // Enable collision on ground layer
      
       groundLayer.setCollisionByExclusion([-1])
@@ -32,6 +40,7 @@ class Play extends Phaser.Scene {
       this.bike = this.physics.add.sprite(20, 100, 'bike')
       this.bike.setBodySize(1,16)
       this.bike.setGravityY(150)
+      //this.movingEmitter.startFollow(this.bike, -20, 10, false)
       //this.bike.setCollideWorldBounds(true)
       this.bike.setDepth(10000000000000000000)
       // Add collider between bike and ground
@@ -60,7 +69,7 @@ class Play extends Phaser.Scene {
     update() {
       this.score = Math.floor((this.bike.x-20)*this.mult)
       this.scoreText.setText(`Score: ${this.score}`)
-      
+      this.movingEmitter.setPosition(this.bike.x - 20, this.bike.y + 10);
       if(this.cursors.right.isDown) {
         this.bike.setAccelerationX(this.addedvel)
     }

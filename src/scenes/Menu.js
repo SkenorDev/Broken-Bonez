@@ -21,6 +21,7 @@ class Menu extends Phaser.Scene {
       this.load.image('bike', 'motorbike.png');
       this.load.image('title', 'title.jpg');
       this.load.image('over', 'over.jpg');
+      this.load.image('pixel', 'white_pixel.png')
   }
 
   create() {
