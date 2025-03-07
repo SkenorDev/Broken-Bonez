@@ -12,6 +12,7 @@ class Play extends Phaser.Scene {
     this.death=0
     this.mult=1
     this.uponce=0
+    this.gameover=false;
   }
     create() {
       let jump = this.sound.get('jump');
@@ -87,12 +88,12 @@ if (this.bike.body.blocked.down) {
   if(this.bike.angle>46){
     console.log("angle")
     this.sound.play('explosion')
-    this.scene.start('menuScene')
+    this.scene.start('overScene', { score: this.score })
   }
   if(this.bike.angle<-46){
     console.log("angle")
     this.sound.play('explosion')
-    this.scene.start('menuScene')
+    this.scene.start('overScene', { score: this.score })
   }
   this.bike.setAngularVelocity(0);
   this.bike.setAngle(0);
@@ -102,7 +103,7 @@ if (this.bike.body.blocked.down) {
 
 if(this.bike.y>256){
   this.sound.play('explosion')
-  this.scene.start('menuScene')
+  this.scene.start('overScene', { score: this.score })
   console.log("fall")
 }
 
@@ -117,7 +118,7 @@ if(this.bike.body.blocked.right){
   this.death++
   if(this.death>3){
     this.sound.play('explosion')
-    this.scene.start('menuScene')
+    this.scene.start('overScene', { score: this.score })
   }
 }
 else{

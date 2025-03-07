@@ -20,6 +20,7 @@ class Menu extends Phaser.Scene {
       this.load.audio('music', 'music.mp3')
       this.load.image('bike', 'motorbike.png');
       this.load.image('title', 'title.jpg');
+      this.load.image('over', 'over.jpg');
   }
 
   create() {
