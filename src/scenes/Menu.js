@@ -40,11 +40,14 @@ class Menu extends Phaser.Scene {
 
     // Add start text
     const startText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height - 100,
-        "Press SPACE to Start or left arrow for credits", 
-        { font: "20px Arial", fill: "#ffffff" }
+        "Press SPACE to Start, left arrow for credits, down for tutorial", 
+        { font: "15px Arial", fill: "#ffffff" }
     ).setOrigin(0.5);
     this.input.keyboard.once('keydown-LEFT', () => {
         this.scene.start('creditScene'); // Change 'gameScene' to your actual game scene
+    });
+    this.input.keyboard.once('keydown-DOWN', () => {
+        this.scene.start('tutorialScene'); // Change 'gameScene' to your actual game scene
     });
     // Start game on SPACE key press
     this.input.keyboard.once('keydown-SPACE', () => {
