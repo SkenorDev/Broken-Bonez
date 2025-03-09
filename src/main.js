@@ -14,7 +14,7 @@ let config = {
       }
   },
   zoom: 2,
-    scene: [ Menu, Play, Over]
+    scene: [ Menu, Play, Over, Credits]
   }
   
   let game = new Phaser.Game(config)

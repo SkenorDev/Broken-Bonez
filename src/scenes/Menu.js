@@ -22,6 +22,7 @@ class Menu extends Phaser.Scene {
       this.load.image('title', 'title.jpg');
       this.load.image('over', 'over.jpg');
       this.load.image('pixel', 'white_pixel.png')
+      this.load.image('credit', 'credit.png')
   }
 
   create() {
@@ -39,10 +40,12 @@ class Menu extends Phaser.Scene {
 
     // Add start text
     const startText = this.add.text(this.cameras.main.width / 2, this.cameras.main.height - 100,
-        "Press SPACE to Start", 
+        "Press SPACE to Start or left arrow for credits", 
         { font: "20px Arial", fill: "#ffffff" }
     ).setOrigin(0.5);
-
+    this.input.keyboard.once('keydown-LEFT', () => {
+        this.scene.start('creditScene'); // Change 'gameScene' to your actual game scene
+    });
     // Start game on SPACE key press
     this.input.keyboard.once('keydown-SPACE', () => {
         this.scene.start('playScene'); // Change 'gameScene' to your actual game scene
