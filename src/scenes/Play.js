@@ -82,11 +82,10 @@ class Play extends Phaser.Scene {
 if(!this.cursors.left.isDown) {
   this.bike.setDragX(40)
 }
-if(this.cursors.up.isDown && !this.bike.body.blocked.down) {
-    console.log("eaten")
+if(this.cursors.up.isDown && !this.bike.body.blocked.down&&this.uponce<1) {
   this.bike.setAngularVelocity(360);
   this.mult=this.mult+1
-  //this.uponce++
+  this.uponce++
 }
 
 
