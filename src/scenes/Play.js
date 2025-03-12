@@ -59,6 +59,8 @@ class Play extends Phaser.Scene {
        this.generatemap()
        this.generatemap()
        this.generatemap()
+       this.generatemap()
+       this.generatemap()
        this.scoreText = this.add.text(30, 20, 'Score: 0', {
         fontSize: '16px',
         fill: '#ffffff',
@@ -135,7 +137,11 @@ this.death=0
 }
 if (Phaser.Input.Keyboard.JustDown(this.cursors.space) && this.bike.body.blocked.down) {
   this.generatemap()
-  
+  this.addedvel++
+
+  this.generatemap()
+  this.generatemap()
+  this.generatemap()
   this.bike.y=this.bike.y-3
   this.bike.setVelocityY(-100)
   
@@ -154,12 +160,12 @@ this.bike.setAngle(-20)
     
 
       generatemap(){
-        const map = this.add.tilemap(`tilemapJSON${Phaser.Math.Between(1,7)}`)
+        const map = this.add.tilemap(`tilemapJSON${Phaser.Math.Between(1,14)}`)
         const tileset = map.addTilesetImage('tileset', 'tilesetImage')
         map.createLayer('sky', tileset,this.count*256, 0);
         map.createLayer('decorations', tileset,this.count*256, 0,)
         const groundLayer = map.createLayer('ground', tileset, this.count*256, 0)
-        this.cameras.main.setBounds(0, 0, (this.count + 1) * 256, this.cameras.main.height);
+        this.cameras.main.setBounds(0, 0, (100000) * 256, this.cameras.main.height);
          this.count=this.count+1
          groundLayer.setCollisionByExclusion([-1])
          this.physics.add.collider(this.bike, groundLayer)

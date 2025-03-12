@@ -14,6 +14,13 @@ class Menu extends Phaser.Scene {
       this.load.tilemapTiledJSON('tilemapJSON5', 'BB_5.json');
       this.load.tilemapTiledJSON('tilemapJSON6', 'BB_6.json');
       this.load.tilemapTiledJSON('tilemapJSON7', 'BB_7.json');
+      this.load.tilemapTiledJSON('tilemapJSON8', 'BB_8.json');
+      this.load.tilemapTiledJSON('tilemapJSON9', 'BB_9.json');
+      this.load.tilemapTiledJSON('tilemapJSON10', 'BB_10.json');
+      this.load.tilemapTiledJSON('tilemapJSON11', 'BB_11.json');
+      this.load.tilemapTiledJSON('tilemapJSON12', 'BB_12.json');
+      this.load.tilemapTiledJSON('tilemapJSON13', 'BB_13.json');
+      this.load.tilemapTiledJSON('tilemapJSON14', 'BB_14.json');
       this.load.audio('explosion', 'boom.wav')
       this.load.audio('jump', 'jump.wav')
       this.load.audio('sfx-motor', 'motorsound.mp3')
